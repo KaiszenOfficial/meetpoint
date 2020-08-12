@@ -1,0 +1,132 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #f8f9fa;
+	color: #000000;
+}
+
+.card {
+	background-color: #616265;
+	color: #ffffff;
+}
+
+.card-header {
+	background-color: #ecac00;
+	color: #002663;
+}
+
+.list-group-item {
+	background-color: transparent;
+	border: none;
+	font-size: 0.8rem;
+}
+
+.list-group-item.active {
+	border-color: #f8f9fa;
+	background-color: #f8f9fa;
+}
+
+.list-group-item-action {
+	color: inherit;
+	cursor: pointer;
+}
+
+.list-group-item.room-list-header {
+	font-size: 1.2rem;
+	font-weight: bold;
+	background-color: #ecac00;
+	color: #002663;
+}
+
+.btn-theme {
+	color: #002663;
+	background-color: #ecac00;
+	border-color: hsl(44, 100%, 46%);
+}
+
+.btn-theme:focus {
+	box-shadow: 0 0 0 .2rem rgba(236,172,0,.25);
+}
+
+.form-control:focus {
+	box-shadow: 0 0 0 .2rem rgba(236,172,0,.25);
+}
+
+.chat-window {
+	height: 500px;
+	background-color: #f8f9fa;
+	color: #002663;
+	border-radius: 0.25rem;
+	padding: 20px;
+	overflow-y: scroll;
+}
+
+.chat-window>.card:first-of-type {
+	margin-top: 0;
+}
+
+.chat-message-header {
+	margin-bottom: 10px;
+}
+
+.chat-time {
+	font-size: 0.6rem;
+}
+
+.chat-message {
+	font-size: 0.8rem;
+	text-align: justify;
+}
+
+.card.received-message {
+	border-bottom-right-radius: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.chat-message-header>.username {
+	padding-right: 5px;
+}
+
+.chat-message-header>.chat-time {
+	padding-left: 5px;
+}
+
+.card.sent-message {
+	border-bottom-left-radius: 0;
+	background-color: #ecac00;
+	color: #002663;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: end;
+}
+
+.server-messages {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.user-joined-message, .user-welcome-message, .user-left-message {
+	font-size: 0.7rem;
+	padding: 5px;
+	border-radius: 0.25rem;
+}
+
+.user-joined-message {
+	background-color: aqua;
+}
+
+.user-left-message {
+	background-color: tomato;
+	color: #f8f9fa;
+}
+
+.user-welcome-message {
+	background-color: lightseagreen;
+}
+
+.material-icons {
+	font-size: inherit;
+}

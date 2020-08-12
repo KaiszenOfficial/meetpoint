@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{title}}</title>
+
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row justify-content-center py-5">
+
+			<div class="col-12">
+
+				<div class="card">
+					<div class="card-header text-center">
+						<h3 class="card-title font-weight-bold">{{title}}</h3>
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-2 text-center">
+								<ul class="list-group rooms">
+									<li class="list-group-item room-list-header">Rooms</li>
+									<li class="list-group-item list-group-item-action">General</li>
+									{{#rooms}}
+									<li class="list-group-item list-group-item-action">{{display}}</li>
+									{{/rooms}}
+								</ul>
+							</div>
+
+							<div class="col-8">
+								<div class="card">
+									<div class="card-header d-flex justify-content-between">
+										<h5 class="card-title font-weight-bold text-uppercase chat-window-header"></h5>
+										<button class="btn btn-sm btn-secondary" id="leaveBtn">
+											<span class="material-icons">exit_to_app</span>
+										</button>
+									</div>
+									<div class="card-body">
+										<div class="chat-window">
+
+										</div>
+									</div>
+								</div>
+
+								<form id="message-form">
+									<div class="input-group input-group-sm my-2">
+
+										<input type="text" class="form-control" id="msg" required>
+										<div class="input-group-append">
+											<button type="submit" class="btn btn-theme input-group-text"
+												id="sendBtn"><span class="material-icons">chat</span></button>
+										</div>
+
+									</div>
+								</form>
+							</div>
+
+							<div class="col-2 text-center">
+								<ul class="list-group users">
+									<li class="list-group-item room-list-header">Users</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		var { token } = localStorage
+		var socket = io({ query: { token } });
+		var chatWindow = document.querySelector('.chat-window');
+
+		socket.emit('join:room');
+
+		socket.on('users:connected', (users) => {
+			var userList = document.querySelector('.users');
+			while (userList.childNodes.length > 2) {
+				userList.removeChild(userList.lastChild);
+			}
+			users.forEach(user => {
+				var li = document.createElement('li');
+				li.classList.add('list-group-item', 'list-group-item-action')
+				li.innerText = user.username;
+
+				userList.appendChild(li);
+			});
+		});
+
+		socket.on('user:welcome', (data) => {
+			var chatWindowHeader = document.querySelector('.chat-window-header');
+			chatWindowHeader.innerText = `Connected :: ${data.room}`;
+
+			var serverMsgDiv = document.createElement('div');
+			serverMsgDiv.classList.add('server-messages');
+
+			var textDiv = document.createElement('span');
+			textDiv.classList.add('user-welcome-message', 'my-1');
+			textDiv.innerText = data.text;
+
+			serverMsgDiv.appendChild(textDiv);
+
+			chatWindow.appendChild(serverMsgDiv);
+		})
+
+		socket.on('user:joined', (text) => {
+			var serverMsgDiv = document.createElement('div');
+			serverMsgDiv.classList.add('server-messages');
+
+			var textDiv = document.createElement('span');
+			textDiv.classList.add('user-joined-message', 'my-1');
+			textDiv.innerText = text;
+
+			serverMsgDiv.appendChild(textDiv);
+
+			chatWindow.appendChild(serverMsgDiv);
+		});
+
+		socket.on('user:left', (text) => {
+			var serverMsgDiv = document.createElement('div');
+			serverMsgDiv.classList.add('server-messages');
+
+			var textDiv = document.createElement('span');
+			textDiv.classList.add('user-left-message');
+			textDiv.innerText = text;
+
+			serverMsgDiv.appendChild(textDiv);
+
+			chatWindow.appendChild(serverMsgDiv);
+		});
+
+
+		document.getElementById('message-form').addEventListener('submit', function (e) {
+			e.preventDefault();
+
+			var msg = document.getElementById('msg').value;
+			if (!msg) {
+				return;
+			}
+			socket.emit('send:message', msg);
+
+			document.getElementById('msg').value = '';
+			document.getElementById('msg').focus();
+
+		});
+
+		socket.on('new:message', (data) => {
+			var chatDiv = document.createElement('div');
+			chatDiv.classList.add('card');
+			chatDiv.classList.add('received-message')
+
+			var messageHeader = document.createElement('div');
+			messageHeader.classList.add('chat-message-header');
+
+			var username = document.createElement('span');
+			var time = document.createElement('span');
+
+			username.classList.add('username');
+			username.innerText = data.username;
+
+			time.classList.add('chat-time');
+			time.innerText = data.time;
+
+			messageHeader.appendChild(username);
+			messageHeader.appendChild(time);
+
+			var text = document.createElement('p');
+			text.classList.add('chat-message');
+			text.innerText = data.text;
+
+			var card = document.createElement('div');
+			card.classList.add('card-body')
+			card.appendChild(messageHeader);
+			card.appendChild(text);
+
+			chatDiv.appendChild(card);
+			chatWindow.appendChild(chatDiv);
+
+		});
+
+		socket.on('sent:message', (data) => {
+			var chatDiv = document.createElement('div');
+			chatDiv.classList.add('card');
+			chatDiv.classList.add('sent-message')
+
+			var messageHeader = document.createElement('div');
+			messageHeader.classList.add('chat-message-header');
+
+			var username = document.createElement('span');
+			var time = document.createElement('span');
+
+			username.classList.add('username');
+			username.innerText = data.username;
+
+			time.classList.add('chat-time');
+			time.innerText = data.time;
+
+			messageHeader.appendChild(username);
+			messageHeader.appendChild(time);
+
+			var text = document.createElement('p');
+			text.classList.add('chat-message');
+			text.innerText = data.text;
+
+			var card = document.createElement('div');
+			card.classList.add('card-body')
+			card.appendChild(messageHeader);
+			card.appendChild(text);
+
+			chatDiv.appendChild(card);
+			chatWindow.appendChild(chatDiv);
+		});
+
+		document.getElementById('leaveBtn').addEventListener('click', function (e) {
+			e.preventDefault();
+
+			localStorage.removeItem('token');
+			window.location.href = 'http://' + window.location.host;
+		})
+	</script>
+</body>
+
+</html>
