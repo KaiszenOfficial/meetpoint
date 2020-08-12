@@ -100,7 +100,7 @@
 			}).then(data => {
 				console.log(data);
 				saveSession(data);
-				window.location.href = 'http://' + window.location.host + '/main'
+				window.location.href = window.location.protocol + '//' + window.location.host + '/main'
 			}).catch(error => {
 				console.error(error);
 			})
