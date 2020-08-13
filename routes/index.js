@@ -9,7 +9,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:room', (req, res) => {
-	var currentRoom = req.params.room;
+	var currentRoom = constants.ROOMS.find(room => room.id == req.params.room);
 	res.render('main', { title: constants.TITLE, rooms: constants.ROOMS, currentRoom });
 })
 

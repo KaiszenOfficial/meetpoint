@@ -55,6 +55,10 @@ body {
 	color: #002663;
 }
 
+.card-title {
+	margin-bottom: 0;
+}
+
 .list-group {
 	border: 1px solid rgba(0, 0, 0, .5);
 }
@@ -167,14 +171,14 @@ body {
 }
 
 .user-joined-message {
-	background-color: aqua;
+	background-color: #569099;
 }
 
 .user-left-message {
-	background-color: tomato;
+	background-color: #c9282d;
 	color: #f8f9fa;
 }
 
 .user-welcome-message {
-	background-color: lightseagreen;
+	background-color: #6c953c;
 }

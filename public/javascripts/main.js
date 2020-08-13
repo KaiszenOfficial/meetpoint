@@ -1,5 +1,5 @@
 
-var { token } = localStorage
+var { token } = sessionStorage;
 var socket = io({ query: { token } });
 var chatWindow = document.querySelector('.chat-window');
 
@@ -45,7 +45,7 @@ socket.on('user:welcome', (data) => {
 	var roomList = document.querySelector('.rooms').children;
 	// console.log(roomList);
 	for (let index = 0; index < roomList.length; index++) {
-		if (roomList.item(index).innerHTML.toUpperCase() == data.room.toUpperCase()) {
+		if (roomList.item(index).id.toUpperCase() == data.room.toUpperCase()) {
 			roomList.item(index).classList.add('active');
 		}
 	}
@@ -162,6 +162,6 @@ socket.on('sent:message', (data) => {
 document.getElementById('leaveBtn').addEventListener('click', function (e) {
 	e.preventDefault();
 
-	localStorage.removeItem('token');
+	sessionStorage.removeItem('token');
 	window.location.href = window.location.protocol + '//' + window.location.host;
 })

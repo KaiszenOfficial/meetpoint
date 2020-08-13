@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/images/chat.png" type="image/x-icon">
 	<title>{{title}}</title>
 
 	<!-- CSS only -->
@@ -56,7 +57,7 @@
 
 							<div class="col-8">
 								<div class="card">
-									<div class="card-header d-flex justify-content-between">
+									<div class="card-header d-flex justify-content-between align-items-center">
 										<h5 class="card-title font-weight-bold text-uppercase chat-window-header"></h5>
 										<span class="leave-btn" id="leaveBtn" title="Leave Room">
 											<svg width="1em" height="1em" viewBox="0 0 16 16"

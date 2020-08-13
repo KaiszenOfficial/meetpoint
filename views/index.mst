@@ -4,7 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Simple Chat APP</title>
+	<link rel="shortcut icon" href="/images/chat.png" type="image/x-icon">
+	<title>{{title}}</title>
 
 	<!-- CSS only -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -70,7 +71,6 @@
 								<label for="" class="form-control-label">You can choose the room you want to join
 									into.</label>
 								<select name="room" id="room" class="form-control form-control-sm">
-									<option value="general" selected>General</option>
 									{{#rooms}}
 									<option value="{{id}}">{{display}}</option>
 									{{/rooms}}
@@ -119,7 +119,7 @@
 		});
 
 		function saveSession(token) {
-			localStorage.setItem('token', token);
+			sessionStorage.setItem('token', token);
 			// localStorage.setItem('room', data.room);
 		}
 	</script>
