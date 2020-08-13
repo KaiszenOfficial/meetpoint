@@ -12,7 +12,7 @@ router.post('/signin', function (req, res, next) {
 
 	var token = jwt.sign({ username, room }, constants.SECRET, { expiresIn: constants.EXPIRESIN });
 
-	return res.status(200).send({ token }).end();
+	return res.status(200).send({ token, room }).end();
 	
 });
 

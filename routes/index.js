@@ -8,9 +8,9 @@ router.get('/', function (req, res, next) {
 	res.render('index', { title: constants.TITLE, rooms: constants.ROOMS });
 });
 
-router.get('/main', (req, res) => {
-	
-	res.render('main', { title: constants.TITLE, rooms: constants.ROOMS });
+router.get('/:room', (req, res) => {
+	var currentRoom = req.params.room;
+	res.render('main', { title: constants.TITLE, rooms: constants.ROOMS, currentRoom });
 })
 
 
