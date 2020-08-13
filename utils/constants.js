@@ -2,6 +2,10 @@ module.exports = {
 	TITLE: 'Simple Chat APP',
 	ROOMS: [
 		{
+			id: 'GENERAL',
+			display: 'General'
+		},
+		{
 			id: 'JS',
 			display: 'Javascript'
 		},
