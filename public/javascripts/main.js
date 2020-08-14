@@ -176,7 +176,7 @@ function changeRoom (id) {
 	}).then(data => {
 		console.log(data);
 		if(!data.success) {
-			showAlert('warning', 'Cannot join same channel!')
+			showAlert('warning', 'Cannot join same room!')
 		} else {
 			sessionStorage.setItem('token', data.token);
 			window.location.href = window.location.protocol + '//' + window.location.host + '/' + data.room;
