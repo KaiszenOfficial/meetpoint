@@ -1,9 +1,8 @@
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Montserrat', sans-serif;
 	background-color: #f8f9fa;
-	color: #000000;
+	color: #191919;
 }
 
 .lds-ripple {
@@ -17,7 +16,7 @@ body {
 
 .lds-ripple div {
 	position: absolute;
-	border: 4px solid #ecac00;
+	border: 4px solid #191919;
 	opacity: 1;
 	border-radius: 50%;
 	animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -44,62 +43,13 @@ body {
 	}
 }
 
-.card {
-	background-color: #616265;
-	color: #ffffff;
-	border: 1px solid rgba(0, 0, 0, .5);
-}
-
-.card-header {
-	background-color: #ecac00;
-	color: #002663;
-}
-
 .card-title {
 	margin-bottom: 0;
-}
-
-.list-group {
-	border: 1px solid rgba(0, 0, 0, .5);
-}
-
-.list-group-item {
-	background-color: transparent;
-	border: none;
-	font-size: 0.8rem;
-}
-
-.list-group-item.active {
-	border-color: #f8f9fa;
-	background-color: #f8f9fa;
-	color: #002663;
-	font-weight: bold;
-}
-
-.list-group-item-action {
-	color: inherit;
-	cursor: pointer;
 }
 
 .list-group-item.room-list-header {
 	font-size: 1.2rem;
 	font-weight: bold;
-	background-color: #ecac00;
-	color: #002663;
-}
-
-.btn-theme {
-	color: #002663;
-	background-color: #ecac00;
-	border-color: hsl(44, 100%, 46%);
-}
-
-.btn-theme:focus {
-	box-shadow: 0 0 0 .2rem rgba(236, 172, 0, .25);
-}
-
-.form-control:focus {
-	box-shadow: 0 0 0 .2rem rgba(236, 172, 0, .25);
 }
 
 .leave-btn {
@@ -151,8 +101,8 @@ body {
 
 .card.sent-message {
 	border-bottom-left-radius: 0;
-	background-color: #ecac00;
-	color: #002663;
+	background-color: #191919;;
+	color: #ffffff;
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: end;

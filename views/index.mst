@@ -8,8 +8,7 @@
 	<title>{{title}}</title>
 
 	<!-- CSS only -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -70,14 +69,14 @@
 							<div class="form-group">
 								<label for="" class="form-control-label">You can choose the room you want to join
 									into.</label>
-								<select name="room" id="room" class="form-control form-control-sm">
+								<select name="room" id="room" class="custom-select">
 									{{#rooms}}
 									<option value="{{id}}">{{display}}</option>
 									{{/rooms}}
 								</select>
 							</div>
 
-							<button type="submit" class="btn btn-sm btn-theme text-uppercase">enter</button>
+							<button type="submit" class="btn btn-sm btn-primary text-uppercase">enter</button>
 						</form>
 					</div>
 				</div>
