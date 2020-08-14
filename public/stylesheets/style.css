@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	background-color: #f8f9fa;
+	background-color: #ced4da;
 	color: #191919;
 }
 
@@ -50,6 +50,7 @@ body {
 .list-group-item.room-list-header {
 	font-size: 1.2rem;
 	font-weight: bold;
+	color: #191919;
 }
 
 .leave-btn {
@@ -62,10 +63,10 @@ body {
 .chat-window {
 	height: 500px;
 	background-color: #f8f9fa;
-	color: #002663;
-	border-radius: 0.25rem;
 	padding: 20px;
 	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
 }
 
 .chat-window>.card:first-of-type {
@@ -89,6 +90,8 @@ body {
 	border-bottom-right-radius: 0;
 	margin-top: 10px;
 	margin-bottom: 10px;
+	width: 70%;
+	color: #191919;
 }
 
 .chat-message-header>.username {
@@ -106,6 +109,8 @@ body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: end;
+	width: 70%;
+	align-self: flex-end;
 }
 
 .server-messages {
