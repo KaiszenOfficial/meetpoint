@@ -158,9 +158,51 @@ socket.on('sent:message', (data) => {
 	chatWindow.appendChild(chatDiv);
 });
 
+
+function changeRoom (id) {
+	var roomId = id;
+	// call api to change room
+	fetch('/change_room', {
+		method: 'POST',
+		body: JSON.stringify({room: roomId}),
+		headers: {
+			'Content-Type': 'application/json',
+			'x-auth-token': token
+		}
+	}).then(res => {
+		if(!res.ok) throw res;
+
+		return res.json();
+	}).then(data => {
+		console.log(data);
+		if(!data.success) {
+			showAlert('warning', 'Cannot join same channel!')
+		} else {
+			sessionStorage.setItem('token', data.token);
+			window.location.href = window.location.protocol + '//' + window.location.host + '/' + data.room;
+			// showAlert('info', 'Joined room ' + data.room);
+		}
+	}).catch(error => {
+		error.text().then(text => {
+			showAlert('danger', text)
+		});
+	})
+}
+
 document.getElementById('leaveBtn').addEventListener('click', function (e) {
 	e.preventDefault();
 
 	sessionStorage.removeItem('token');
 	window.location.href = window.location.protocol + '//' + window.location.host;
-})
+});
+
+function showAlert(type, text) {
+	var alertClass = 'alert-' + type;
+	var alert = document.getElementById('alert-message');
+	document.getElementById('alert-text').innerText = text;
+	alert.classList.add(alertClass);
+	alert.style.display = 'block';
+	setTimeout(() => {
+		alert.style.display = 'none';
+	}, 3000)
+}

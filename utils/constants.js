@@ -1,5 +1,5 @@
 module.exports = {
-	TITLE: 'Simple Chat APP',
+	TITLE: 'SIMPLE CHAT APP',
 	ROOMS: [
 		{
 			id: 'GENERAL',

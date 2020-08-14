@@ -125,15 +125,6 @@ body {
 	border-radius: 0.25rem;
 }
 
-.user-joined-message {
-	background-color: #569099;
-}
-
-.user-left-message {
-	background-color: #c9282d;
-	color: #f8f9fa;
-}
-
-.user-welcome-message {
-	background-color: #6c953c;
+#alert-message {
+	display: none;
 }

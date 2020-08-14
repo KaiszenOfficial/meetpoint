@@ -46,7 +46,7 @@
 					<div class="card-body">
 						<form id="loginForm">
 							<div class="form-group">
-								<div class="input-group input-group-sm">
+								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text">
 											<svg width="1em" height="1em" viewBox="0 0 16 16"
@@ -76,7 +76,7 @@
 								</select>
 							</div>
 
-							<button type="submit" class="btn btn-primary text-uppercase">enter</button>
+							<button type="submit" class="btn btn-secondary text-uppercase">enter</button>
 						</form>
 					</div>
 				</div>
