@@ -39,7 +39,7 @@
 
 			<div class="col-12">
 
-				<div class="card">
+				<div class="card text-white bg-primary">
 					<div class="card-header text-center">
 						<h3 class="card-title font-weight-bold">{{title}}</h3>
 					</div>
