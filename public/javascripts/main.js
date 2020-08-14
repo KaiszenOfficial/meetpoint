@@ -35,7 +35,7 @@ socket.on('user:welcome', (data) => {
 	serverMsgDiv.classList.add('server-messages');
 
 	var textDiv = document.createElement('span');
-	textDiv.classList.add('user-welcome-message', 'my-1');
+	textDiv.classList.add('badge', 'badge-success', 'my-1');
 	textDiv.innerText = data.text;
 
 	serverMsgDiv.appendChild(textDiv);
@@ -56,7 +56,7 @@ socket.on('user:joined', (text) => {
 	serverMsgDiv.classList.add('server-messages');
 
 	var textDiv = document.createElement('span');
-	textDiv.classList.add('user-joined-message', 'my-1');
+	textDiv.classList.add('badge', 'badge-info', 'my-1');
 	textDiv.innerText = text;
 
 	serverMsgDiv.appendChild(textDiv);
@@ -69,7 +69,7 @@ socket.on('user:left', (text) => {
 	serverMsgDiv.classList.add('server-messages');
 
 	var textDiv = document.createElement('span');
-	textDiv.classList.add('user-left-message');
+	textDiv.classList.add('badge', 'badge-warning', 'my-1');
 	textDiv.innerText = text;
 
 	serverMsgDiv.appendChild(textDiv);
@@ -94,8 +94,7 @@ document.getElementById('message-form').addEventListener('submit', function (e) 
 
 socket.on('new:message', (data) => {
 	var chatDiv = document.createElement('div');
-	chatDiv.classList.add('card');
-	chatDiv.classList.add('received-message')
+	chatDiv.classList.add('card', 'received-message');
 
 	var messageHeader = document.createElement('div');
 	messageHeader.classList.add('chat-message-header');
