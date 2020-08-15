@@ -39,6 +39,11 @@
 
 			<div class="col-12">
 
+				<div class="alert alert-dismissible" id="alert-message">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong id="alert-text"></strong>
+				</div>
+
 				<div class="card text-white bg-primary">
 					<div class="card-header text-center">
 						<h3 class="card-title font-weight-bold">{{title}}</h3>
@@ -49,7 +54,8 @@
 								<ul class="list-group rooms">
 									<li class="list-group-item room-list-header">Rooms</li>
 									{{#rooms}}
-									<a href="javascript:void(0)" class="list-group-item list-group-item-action" id="{{id}}">{{display}}</a>
+									<a href="javascript:void(0)" onclick="changeRoom(id)"
+										class="list-group-item list-group-item-action" id="{{id}}">{{display}}</a>
 									{{/rooms}}
 								</ul>
 							</div>
@@ -80,7 +86,7 @@
 								</div>
 
 								<form id="message-form">
-									<div class="input-group input-group-sm my-2">
+									<div class="input-group my-2">
 
 										<input type="text" class="form-control" id="msg" required>
 										<div class="input-group-append">
