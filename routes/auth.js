@@ -3,7 +3,7 @@ var router  = express.Router();
 
 var jwt = require('jsonwebtoken');
 
-var constants = require('../utils/constants');
+var constants = require('../constants');
 
 /* Signin user. */
 router.post('/signin', function (req, res, next) {
