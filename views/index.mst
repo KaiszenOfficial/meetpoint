@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="description" content="A simple chat application designed using NodeJS Express, socket io and Mustache for templating.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/images/chat.png" type="image/x-icon">
 	<title>{{title}}</title>
@@ -46,7 +47,8 @@
 
 						<hr style="margin-top: 1.5rem; margin-bottom: 1.5rem; border-top: 1px solid #fff;">
 
-						<blockquote class="blockquote text-justify">In this application we cover the basic setup of a socket io
+						<blockquote class="blockquote text-justify">In this application we cover the basic setup of a
+							socket io
 							connection in a NodeJS app and
 							how we communicate with the clients with the help of events. This also covers the concept of
 							rooms, connecting to a room and emitting events to the connected room as well basic
@@ -54,13 +56,15 @@
 
 						<div class="mt-5 text-center">
 
-							<h6 class="text-white">Visit my <a href="https://github.com/KaiszenOfficial/simple-chat-app" class="text-info">GitHub repository</a></h6>
+							<h6 class="text-white">Visit my <a href="https://github.com/KaiszenOfficial/simple-chat-app"
+									class="text-info">GitHub repository</a></h6>
 
 							<p>OR</p>
 
 							<h6 class="text-white">Clone directly</h6>
 							<div class="input-group input-group-sm">
-								<input type="text" id="gitUrl" readonly class="form-control" value="https://github.com/KaiszenOfficial/simple-chat-app.git">
+								<input type="text" id="gitUrl" readonly class="form-control"
+									value="https://github.com/KaiszenOfficial/simple-chat-app.git">
 								<div class="input-group-append">
 									<button class="btn btn-secondary input-group-text" onclick="copyGitUrl()">
 										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-plus"
@@ -75,7 +79,7 @@
 							</div>
 						</div>
 
-						
+
 
 					</div>
 				</div>
