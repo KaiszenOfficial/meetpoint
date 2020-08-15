@@ -7,14 +7,15 @@ var constants = require('../constants');
 module.exports = (io) => {
 	io.use((socket, next) => {
 		var token = socket.handshake.query.token;
-		if (token) {
-			jwt.verify(token, constants.SECRET, (err, decoded) => {
-				if (err) return next(new Error("Failed to authenticate connection"));
-
-				socket.decoded = decoded;
-				next();
-			})
+		if (!token) {
+			return next(new Error(JSON.stringify({ status: 401, text: "Please login to continue." })));
 		}
+		jwt.verify(token, constants.SECRET, (err, decoded) => {
+			if (err) return next(new Error(JSON.stringify({ status: 401, text: "Authentication Error! Please login again" })));
+
+			socket.decoded = decoded;
+			next();
+		})
 	}).on('connection', (socket) => {
 
 		console.log('New User Connected : ', socket.decoded.username);
@@ -49,5 +50,12 @@ module.exports = (io) => {
 			}
 
 		});
+
+		socket.on('error', (error) => {
+			console.log('Some Error Occured', error)
+		});
+
+	}).on('error', (error) => {
+		console.log('Some Error Occured', error)
 	});
 }

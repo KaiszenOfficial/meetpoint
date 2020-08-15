@@ -45,7 +45,7 @@
 					<strong id="alert-text"></strong>
 				</div>
 
-				<div class="card text-white bg-primary">
+				<div class="card text-white bg-primary" id="main-content">
 					<div class="card-header text-center">
 						<h3 class="card-title font-weight-bold">{{title}}</h3>
 					</div>

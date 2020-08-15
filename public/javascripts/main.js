@@ -13,6 +13,21 @@ setTimeout(() => {
 
 socket.emit('join:room');
 
+socket.on('error', (errString) => {
+	var error = JSON.parse(errString);
+	
+	document.getElementById('main-content').style.display = 'none'
+
+	var alert = document.getElementById('alert-message');
+	document.getElementById('alert-text').innerText = error.text;
+	alert.classList.add('alert-danger');
+	alert.style.display = 'block';
+
+	setTimeout(() => {
+		window.location.href = window.location.protocol + '//' + window.location.host;
+	}, 5000)
+})
+
 socket.on('users:connected', (users) => {
 	var userList = document.querySelector('.users');
 	while (userList.childNodes.length > 2) {
