@@ -18,6 +18,6 @@ module.exports = {
 			display: 'JAVA'
 		}
 	],
-	SECRET: 'secret',
+	SECRET: ' de5b49cb-9fe9-40c9-8167-ed18207af14d',
 	EXPIRESIN: 86400000
 }

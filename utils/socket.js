@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 
 var formatMessage = require('./message');
 var { joinRoom, getCurrentUser, getRoomUsers, leaveRoom } = require('./users');
-var constants = require('./constants');
+var constants = require('../constants');
 
 module.exports = (io) => {
 	io.use((socket, next) => {

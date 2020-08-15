@@ -3,7 +3,7 @@ var router  = express.Router();
 
 var jwt = require('jsonwebtoken');
 
-const constants  = require('../utils/constants');
+const constants  = require('../constants');
 const middleware = require('../utils/middleware');
 
 /* GET home page. */
@@ -13,6 +13,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/:room', (req, res) => {
 	var currentRoom = constants.ROOMS.find(room => room.id == req.params.room);
+
 	res.render('main', { title: constants.TITLE, rooms: constants.ROOMS, currentRoom });
 });
 

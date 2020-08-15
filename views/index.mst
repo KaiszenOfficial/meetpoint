@@ -26,12 +26,6 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" href="/stylesheets/style.css">
-
-	<style>
-		.form-control-label {
-			font-size: 0.9rem;
-		}
-	</style>
 </head>
 
 <body>
