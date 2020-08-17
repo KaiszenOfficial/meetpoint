@@ -22,7 +22,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 	}).then(data => {
 		console.log(data);
 		saveSession(data.token);
-		window.location.href = window.location.protocol + '//' + window.location.host + '/' + data.room;
+		window.location.href = window.location.protocol + '//' + window.location.host + '/public/' + data.room;
 	}).catch(error => {
 		console.error(error);
 	})
@@ -30,4 +30,27 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
 
 function saveSession(token) {
 	sessionStorage.setItem('token', token);
+}
+
+function getPrivateRoomInfo() {
+	fetch('/private_room_info', {
+		method: 'GET',
+	})
+	.then(res => res.json())
+	.then(data => {
+		console.log(data.id, data.pass, data.link);
+		document.getElementById('roomId').value = data.id;
+		document.getElementById('roomPass').value = data.pass;
+		document.getElementById('roomLink').value = data.link;
+
+		$('#createRoomModal').modal('show');
+	});
+}
+
+function createPrivateRoom() {
+
+}
+
+function joinPrivateRoom() {
+	$('#joinRoomModal').modal('show');
 }

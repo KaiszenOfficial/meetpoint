@@ -1,5 +1,5 @@
 module.exports = {
-	TITLE: 'SIMPLE CHAT APP',
+	TITLE: 'MeetPoint',
 	ROOMS: [
 		{
 			id: 'GENERAL',
@@ -19,5 +19,6 @@ module.exports = {
 		}
 	],
 	SECRET: ' de5b49cb-9fe9-40c9-8167-ed18207af14d',
-	EXPIRESIN: 86400000
+	SESSION_EXPIRESIN: 86400000,
+	LINK_EXPIRATION: 3600000
 }
