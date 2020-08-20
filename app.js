@@ -8,6 +8,7 @@ var mustache     = require('mustache-express');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter  = require('./routes/auth');
+var roomRouter  = require('./routes/room');
 
 var app = express();
 
@@ -25,8 +26,12 @@ app.set('view engine', 'mst');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+/** set global variable for private rooms */
+global.privateRooms = {};
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
+app.use('/room', roomRouter);
 
 module.exports = app;

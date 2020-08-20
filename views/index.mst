@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="UTF-8">
-	<meta name="description" content="A simple chat application designed using NodeJS Express, socket io and Mustache for templating.">
+	<meta name="description"
+		content="A simple chat application designed using NodeJS Express, socket io and Mustache for templating.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="/images/chat.png" type="image/x-icon">
 	<title>{{title}}</title>
@@ -22,7 +23,6 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" href="/stylesheets/style.css">
@@ -35,7 +35,8 @@
 			<div class="col-sm-12 col-md-6">
 				<div class="card text-white bg-primary">
 					<div class="card-body">
-						<h4 class="text-white">A simple chat application designed using NodeJS Express, socket io and
+						<h4 class="text-white">MeetPoint is simple chat application designed using NodeJS Express,
+							socket io and
 							Mustache for
 							templating.</h4>
 
@@ -50,7 +51,7 @@
 
 						<div class="mt-5 text-center">
 
-							<h6 class="text-white">Visit my <a href="https://github.com/KaiszenOfficial/simple-chat-app"
+							<h6 class="text-white">Visit my <a href="https://github.com/KaiszenOfficial/meetpoint"
 									class="text-info">GitHub repository</a></h6>
 
 							<p>OR</p>
@@ -58,7 +59,7 @@
 							<h6 class="text-white">Clone directly</h6>
 							<div class="input-group input-group-sm">
 								<input type="text" id="gitUrl" readonly class="form-control"
-									value="https://github.com/KaiszenOfficial/simple-chat-app.git">
+									value="https://github.com/KaiszenOfficial/meetpoint.git">
 								<div class="input-group-append">
 									<button class="btn btn-secondary input-group-text" onclick="copyGitUrl()">
 										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-plus"
@@ -91,19 +92,15 @@
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="input-group-text">
-											<svg width="1em" height="1em" viewBox="0 0 16 16"
-												class="bi bi-person-circle" fill="currentColor"
-												xmlns="http://www.w3.org/2000/svg">
-												<path
-													d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
-												<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+											<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
+												fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 												<path fill-rule="evenodd"
-													d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+													d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 											</svg>
 										</span>
 									</div>
 									<input type="text" name="username" id="username" class="form-control"
-										placeholder="Username" required>
+										placeholder="JOIN MEETING AS" required>
 								</div>
 
 							</div>
@@ -118,13 +115,153 @@
 								</select>
 							</div>
 
-							<button type="submit" class="btn btn-secondary text-uppercase">enter</button>
+							<button type="submit" class="btn btn-secondary text-uppercase mt-3 w-100">enter</button>
 						</form>
+
+						<h2 class="text-white font-weight-bold my-3">OR</h2>
+
+						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+							data-target="#createRoomModal">Create private
+							Meeting</button>
+						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+							data-target="#joinRoomModal">Join private
+							Meeting</button>
 					</div>
 				</div>
 
 			</div>
 
+		</div>
+	</div>
+
+	<div class="modal fade" id="createRoomModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Create Private Room</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h6 class="font-weight-bold my-3">When you create a private room, you will be given a Meeting ID,
+						Password and an Invitation Link. You can share either the Room ID and Password or the Invitation
+						Link to whoever you would like to allow into the meeting.</h6>
+					<form id="createRoomForm">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd"
+												d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+										</svg>
+									</span>
+								</div>
+								<input type="text" name="pvusername" id="pvusername" class="form-control"
+									placeholder="JOIN MEETING AS" required>
+							</div>
+
+						</div>
+
+						<button type="submit" class="btn btn-primary text-uppercase mt-3 w-100">enter</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="joinRoomModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Join Private Meeting</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="joinRoomForm">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-fill"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd"
+												d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+										</svg>
+									</span>
+								</div>
+								<input type="text" name="inviteUsername" id="inviteUsername" class="form-control"
+									placeholder="JOIN MEETING AS">
+							</div>
+						</div>
+
+						<h2 class="text-center font-weight-bold my-3">Join meeting using</h2>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hash"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M8.39 12.648a1.32 1.32 0 0 0-.015.18c0 .305.21.508.5.508.266 0 .492-.172.555-.477l.554-2.703h1.204c.421 0 .617-.234.617-.547 0-.312-.188-.53-.617-.53h-.985l.516-2.524h1.265c.43 0 .618-.227.618-.547 0-.313-.188-.524-.618-.524h-1.046l.476-2.304a1.06 1.06 0 0 0 .016-.164.51.51 0 0 0-.516-.516.54.54 0 0 0-.539.43l-.523 2.554H7.617l.477-2.304c.008-.04.015-.118.015-.164a.512.512 0 0 0-.523-.516.539.539 0 0 0-.531.43L6.53 5.484H5.414c-.43 0-.617.22-.617.532 0 .312.187.539.617.539h.906l-.515 2.523H4.609c-.421 0-.609.219-.609.531 0 .313.188.547.61.547h.976l-.516 2.492c-.008.04-.015.125-.015.18 0 .305.21.508.5.508.265 0 .492-.172.554-.477l.555-2.703h2.242l-.515 2.492zm-1-6.109h2.266l-.515 2.563H6.859l.532-2.563z" />
+										</svg>
+									</span>
+								</div>
+								<input type="text" name="inviteId" id="inviteId" class="form-control"
+									placeholder="Meeting ID">
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key-fill"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path fill-rule="evenodd"
+												d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+										</svg>
+									</span>
+								</div>
+								<input type="text" name="invitePass" id="invitePass" class="form-control"
+									placeholder="Password">
+							</div>
+						</div>
+
+						<h2 class="text-center font-weight-bold my-3">OR</h2>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-link-45deg"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z" />
+											<path
+												d="M5.712 6.96l.167-.167a1.99 1.99 0 0 1 .896-.518 1.99 1.99 0 0 1 .518-.896l.167-.167A3.004 3.004 0 0 0 6 5.499c-.22.46-.316.963-.288 1.46z" />
+											<path
+												d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z" />
+											<path
+												d="M10 9.5a2.99 2.99 0 0 0 .288-1.46l-.167.167a1.99 1.99 0 0 1-.896.518 1.99 1.99 0 0 1-.518.896l-.167.167A3.004 3.004 0 0 0 10 9.501z" />
+										</svg>
+									</span>
+								</div>
+								<input type="text" name="inviteLink" id="inviteLink" class="form-control"
+									placeholder="Paste Invite Link">
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary text-uppercase mt-3 w-100">enter</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -136,7 +273,13 @@
 			gitUrl.select();
 			gitUrl.setSelectionRange(0, 9999)
 			document.execCommand('copy');
+		}
 
+		function copyRoomLink() {
+			var gitUrl = document.getElementById('roomLink');
+			gitUrl.select();
+			gitUrl.setSelectionRange(0, 9999)
+			document.execCommand('copy');
 		}
 	</script>
 </body>

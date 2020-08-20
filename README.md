@@ -1,4 +1,4 @@
-# A simple chat application designed using NodeJS Express, socket io and Mustache for templating.
+# MeetPoint simple chat application designed using NodeJS Express, socket io and Mustache for templating.
 
 ### In this application we cover the basic setup of a socket io connection in a NodeJS app and how we communicate with the clients with the help of events. This also covers the concept of rooms, connecting to a room and emitting events to the connected room as well basic authentication of the socket connection using JWT.
 

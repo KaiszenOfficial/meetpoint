@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description"
+		content="MeetPoint is simple chat application designed using NodeJS Express, socket io and Mustache for templating.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="/images/chat.png" type="image/x-icon">
+	<title>{{title}}</title>
+
+	<!-- CSS only -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+
+	<!-- JS, Popper.js, and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+	<div class="container">
+
+		<div class="lds-ripple" id="loader">
+			<div></div>
+			<div></div>
+		</div>
+
+		<div class="row justify-content-center py-5" id="main">
+
+			<div class="col-12">
+
+				<div class="alert alert-dismissible" id="alert-message">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong id="alert-text"></strong>
+				</div>
+
+				<div class="card text-white bg-primary" id="main-content">
+					<div class="card-header text-center">
+						<h3 class="card-title font-weight-bold">{{title}}</h3>
+					</div>
+					<div class="card-body">
+						<div class="row">
+
+							<div class="col-9">
+								<div class="card text-white bg-primary">
+									<div class="card-header d-flex justify-content-between align-items-center">
+										<h5 class="card-title font-weight-bold text-uppercase chat-window-header"></h5>
+
+										<div>
+											<span class="leave-btn px-2" id="inviteBtn" title="Invite"
+												data-toggle="modal" data-target="#inviteModal">
+												<svg width="1em" height="1em" viewBox="0 0 16 16"
+													class="bi bi-share-fill" fill="currentColor"
+													xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd"
+														d="M12.024 3.797L4.499 7.56l-.448-.895 7.525-3.762.448.894zm-.448 9.3L4.051 9.335 4.5 8.44l7.525 3.763-.448.894z" />
+													<path fill-rule="evenodd"
+														d="M13.5 5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm0 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm-11-5.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+												</svg>
+
+											</span>
+
+											<span class="leave-btn" id="leaveBtn" title="Leave Room">
+												<svg width="1em" height="1em" viewBox="0 0 16 16"
+													class="bi bi-arrow-left-square" fill="currentColor"
+													xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd"
+														d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+													<path fill-rule="evenodd"
+														d="M8.354 11.354a.5.5 0 0 0 0-.708L5.707 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z" />
+													<path fill-rule="evenodd"
+														d="M11.5 8a.5.5 0 0 0-.5-.5H6a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5z" />
+												</svg>
+											</span>
+										</div>
+
+
+									</div>
+									<div class="card-body">
+										<div class="chat-window">
+
+										</div>
+									</div>
+								</div>
+
+								<form id="message-form">
+									<div class="input-group my-2">
+										<input type="text" class="form-control" id="msg" required>
+										<div class="input-group-append">
+											<button type="submit" class="btn btn-theme input-group-text" id="sendBtn">
+												<svg width="1em" height="1em" viewBox="0 0 16 16"
+													class="bi bi-chat-left-dots-fill" fill="currentColor"
+													xmlns="http://www.w3.org/2000/svg">
+													<path fill-rule="evenodd"
+														d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793V2zm5 4a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+												</svg>
+											</button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="col-3 text-center">
+								<ul class="list-group users">
+									<li class="list-group-item room-list-header">Users</li>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="modal fade" id="inviteModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Invite</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h5 class="font-weight-bold text-center">You can invite by sharing the Meeting ID and Password</h5>
+
+					<div class="row my-3">
+						<label for="" class="col-3">Meeting ID</label>
+						<input type="text" class="form-control form-control-sm col-8" id="meetingId" readonly>
+					</div>
+
+					<div class="row">
+						<label for="" class="col-3">Password</label>
+						<input type="text" class="form-control form-control-sm col-8" id="meetingPass" readonly>
+					</div>
+
+
+					<h2 class="text-center font-weight-bold my-3">OR</h2>
+
+					<h5 class="font-weight-bold text-center">By sharing the invite link below</h5>
+
+					<div class="input-group input-group-sm my-2">
+						<input type="text" class="form-control" id="meetingLink" readonly>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-theme input-group-text" id="sendBtn">
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-plus"
+									fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+									<path fill-rule="evenodd"
+										d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+									<path fill-rule="evenodd"
+										d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zM8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
+								</svg>
+							</button>
+						</div>
+					</div>
+
+					<button class="btn btn-primary btn-sm mx-auto">
+						<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope-fill"
+							fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd"
+								d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z" />
+						</svg>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="meetingEndModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h5 class="font-weight-bold text-center">The meeting has been ended by the host</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="confirmMeetingEndModal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body text-center">
+					<button class="btn btn-danger text-uppercase" id="endMeetingBtn">end meeting for all</button>
+					<button class="btn btn-primary text-uppercase" id="leaveMeetingBtn">leave meeting</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/javascripts/privateRoom.js"></script>
+</body>
+
+</html>
