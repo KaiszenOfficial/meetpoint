@@ -104,7 +104,7 @@
 										</span>
 									</div>
 									<input type="text" name="username" id="username" class="form-control"
-										placeholder="Join As" required>
+										placeholder="JOIN MEETING AS" required>
 								</div>
 
 							</div>
@@ -124,10 +124,12 @@
 
 						<h2 class="text-white font-weight-bold my-3">OR</h2>
 
-						<button class="btn btn-secondary text-uppercase" onclick="getPrivateRoomInfo()">Create private
-							Room</button>
-						<button class="btn btn-secondary text-uppercase" data-toggle="modal" data-target="#joinRoomModal">Join private
-							Room</button>
+						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+							data-target="#createRoomModal">Create private
+							Meeting</button>
+						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+							data-target="#joinRoomModal">Join private
+							Meeting</button>
 					</div>
 				</div>
 
@@ -140,13 +142,16 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Private Room Info</h5>
+					<h5 class="modal-title">Create Private Room</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="">
+					<h6 class="font-weight-bold my-3">When you create a private room, you will be given a Meeting ID,
+						Password and an Invitation Link. You can share either the Room ID and Password or the Invitation
+						Link to whoever you would like to allow into the meeting.</h6>
+					<form id="createRoomForm">
 						<div class="form-group">
 							<div class="input-group">
 								<div class="input-group-prepend">
@@ -161,44 +166,10 @@
 										</svg>
 									</span>
 								</div>
-								<input type="text" name="roomId" id="roomId" class="form-control" placeholder="Room ID"
-									required>
+								<input type="text" name="pvusername" id="pvusername" class="form-control"
+									placeholder="JOIN MEETING AS" required>
 							</div>
 
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<div class="input-group-prepend">
-									<span class="input-group-text">
-										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-key-fill"
-											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd"
-												d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-										</svg>
-									</span>
-								</div>
-								<input type="text" name="roomPass" id="roomPass" class="form-control"
-									placeholder="Password" required>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="input-group">
-								<input type="text" id="roomLink" readonly class="form-control">
-								<div class="input-group-append">
-									<button type="button" class="btn btn-secondary input-group-text"
-										onclick="copyRoomLink()" title="Copy Room Link">
-										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clipboard-plus"
-											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-											<path fill-rule="evenodd"
-												d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-											<path fill-rule="evenodd"
-												d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3zM8 7a.5.5 0 0 1 .5.5V9H10a.5.5 0 0 1 0 1H8.5v1.5a.5.5 0 0 1-1 0V10H6a.5.5 0 0 1 0-1h1.5V7.5A.5.5 0 0 1 8 7z" />
-										</svg>
-									</button>
-								</div>
-							</div>
 						</div>
 
 						<button type="submit" class="btn btn-primary text-uppercase mt-3 w-100">enter</button>
@@ -212,7 +183,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Join Private Room</h5>
+					<h5 class="modal-title">Join Private Meeting</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -233,8 +204,27 @@
 										</svg>
 									</span>
 								</div>
+								<input type="text" name="inviteUsername" id="inviteUsername" class="form-control"
+									placeholder="JOIN MEETING AS">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<span class="input-group-text">
+										<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-circle"
+											fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+											<path
+												d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z" />
+											<path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+											<path fill-rule="evenodd"
+												d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z" />
+										</svg>
+									</span>
+								</div>
 								<input type="text" name="inviteId" id="inviteId" class="form-control"
-									placeholder="Room ID" required>
+									placeholder="Meeting ID">
 							</div>
 
 						</div>
@@ -251,7 +241,7 @@
 									</span>
 								</div>
 								<input type="text" name="invitePass" id="invitePass" class="form-control"
-									placeholder="Password" required>
+									placeholder="Password">
 							</div>
 						</div>
 
@@ -275,7 +265,7 @@
 									</span>
 								</div>
 								<input type="text" name="inviteLink" id="inviteLink" class="form-control"
-									placeholder="Paste Invite Link" required>
+									placeholder="Paste Invite Link">
 							</div>
 						</div>
 

@@ -120,7 +120,7 @@
 	</div>
 
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="/javascripts/main.js"></script>
+	<script src="/javascripts/publicRoom.js"></script>
 </body>
 
 </html>

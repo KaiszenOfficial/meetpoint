@@ -1,5 +1,10 @@
 
-var { token } = sessionStorage;
+var { room_id, room_pass, room_link, token } = sessionStorage;
+
+document.getElementById('meetingId').value = room_id;
+document.getElementById('meetingPass').value = room_pass;
+document.getElementById('meetingLink').value = room_link;
+
 var socket = io({ query: { token } });
 var chatWindow = document.querySelector('.chat-window');
 
@@ -11,11 +16,11 @@ setTimeout(() => {
 	document.getElementById('loader').style.display = 'none';
 }, 3000);
 
-socket.emit('join:room');
+socket.emit('join:private:room', ({ room_id, room_pass, room_link }));
 
 socket.on('error', (errString) => {
 	var error = JSON.parse(errString);
-	
+
 	document.getElementById('main-content').style.display = 'none'
 
 	var alert = document.getElementById('alert-message');
@@ -56,14 +61,6 @@ socket.on('user:welcome', (data) => {
 	serverMsgDiv.appendChild(textDiv);
 
 	chatWindow.appendChild(serverMsgDiv);
-
-	var roomList = document.querySelector('.rooms').children;
-	// console.log(roomList);
-	for (let index = 0; index < roomList.length; index++) {
-		if (roomList.item(index).id.toUpperCase() == data.room.toUpperCase()) {
-			roomList.item(index).classList.add('active');
-		}
-	}
 })
 
 socket.on('user:joined', (text) => {
@@ -173,28 +170,36 @@ socket.on('sent:message', (data) => {
 	chatWindow.appendChild(chatDiv);
 });
 
+socket.on('check:host:true', () => {
+	$('#confirmMeetingEndModal').modal('show');
+})
 
-function changeRoom (id) {
+socket.on('check:host:false', () => {
+	sessionStorage.clear();
+	window.location.href = window.location.protocol + '//' + window.location.host;
+})
+
+function changeRoom(id) {
 	var roomId = id;
 	// call api to change room
-	fetch('/change_room', {
+	fetch('/room/change', {
 		method: 'POST',
-		body: JSON.stringify({room: roomId}),
+		body: JSON.stringify({ room: roomId }),
 		headers: {
 			'Content-Type': 'application/json',
 			'x-auth-token': token
 		}
 	}).then(res => {
-		if(!res.ok) throw res;
+		if (!res.ok) throw res;
 
 		return res.json();
 	}).then(data => {
 		console.log(data);
-		if(!data.success) {
+		if (!data.success) {
 			showAlert('warning', 'Cannot join same room!')
 		} else {
 			sessionStorage.setItem('token', data.token);
-			window.location.href = window.location.protocol + '//' + window.location.host + '/' + data.room;
+			window.location.href = window.location.protocol + '//' + window.location.host + '/public/' + data.room;
 			// showAlert('info', 'Joined room ' + data.room);
 		}
 	}).catch(error => {
@@ -207,8 +212,25 @@ function changeRoom (id) {
 document.getElementById('leaveBtn').addEventListener('click', function (e) {
 	e.preventDefault();
 
-	sessionStorage.removeItem('token');
+	socket.emit('check:host');
+});
+
+document.getElementById('endMeetingBtn').addEventListener('click', function (e) {
+	e.preventDefault();
+
+	socket.emit('end:meeting:all');
+	sessionStorage.clear();
 	window.location.href = window.location.protocol + '//' + window.location.host;
+});
+
+socket.on('meeting:ended', () => {
+	$('#meetingEndModal').modal('show');
+
+	setTimeout(() => {
+		$('#meetingEndModal').modal('hide');
+		sessionStorage.clear();
+		window.location.href = window.location.protocol + '//' + window.location.host;
+	}, 2000);
 });
 
 function showAlert(type, text) {
