@@ -10,7 +10,7 @@
 	<title>{{title}}</title>
 
 	<!-- CSS only -->
-	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/bootswatch_litera.css">
 
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -23,8 +23,6 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 
@@ -33,9 +31,9 @@
 		<div class="row py-5">
 
 			<div class="col-sm-12 col-md-6">
-				<div class="card text-white bg-primary">
+				<div class="card">
 					<div class="card-body">
-						<h4 class="text-white">MeetPoint is simple chat application designed using NodeJS Express,
+						<h4 class="">MeetPoint is simple chat application designed using NodeJS Express,
 							socket io and
 							Mustache for
 							templating.</h4>
@@ -51,12 +49,12 @@
 
 						<div class="mt-5 text-center">
 
-							<h6 class="text-white">Visit my <a href="https://github.com/KaiszenOfficial/meetpoint"
+							<h6 class="">Visit my <a href="https://github.com/KaiszenOfficial/meetpoint"
 									class="text-info">GitHub repository</a></h6>
 
-							<p>OR</p>
+							<h2 class="my-3">OR</h2>
 
-							<h6 class="text-white">Clone directly</h6>
+							<h6 class="">Clone directly</h6>
 							<div class="input-group input-group-sm">
 								<input type="text" id="gitUrl" readonly class="form-control"
 									value="https://github.com/KaiszenOfficial/meetpoint.git">
@@ -82,7 +80,7 @@
 
 			<div class="col-sm-12 col-md-6 text-center">
 
-				<div class="card text-white bg-primary">
+				<div class="card">
 					<div class="card-header">
 						<h3 class="card-title font-weight-bold">{{title}}</h3>
 					</div>
@@ -115,15 +113,15 @@
 								</select>
 							</div>
 
-							<button type="submit" class="btn btn-secondary text-uppercase mt-3 w-100">enter</button>
+							<button type="submit" class="btn btn-primary text-uppercase mt-3 w-100">enter</button>
 						</form>
 
-						<h2 class="text-white font-weight-bold my-3">OR</h2>
+						<h2 class="my-3">OR</h2>
 
-						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+						<button class="btn btn-primary text-uppercase" data-toggle="modal"
 							data-target="#createRoomModal">Create private
 							Meeting</button>
-						<button class="btn btn-secondary text-uppercase" data-toggle="modal"
+						<button class="btn btn-primary text-uppercase" data-toggle="modal"
 							data-target="#joinRoomModal">Join private
 							Meeting</button>
 					</div>

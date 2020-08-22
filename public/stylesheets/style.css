@@ -107,8 +107,8 @@ body {
 
 .card.sent-message {
 	border-bottom-left-radius: 0;
-	background-color: #191919;;
-	color: #ffffff;
+	background-color: var(--primary);
+	color: var(--white);
 	margin-top: 10px;
 	margin-bottom: 10px;
 	text-align: end;

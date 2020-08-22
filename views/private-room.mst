@@ -10,7 +10,7 @@
 	<title>{{title}}</title>
 
 	<!-- CSS only -->
-	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+	<link rel="stylesheet" href="/stylesheets/bootswatch_litera.css">
 
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -22,9 +22,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
-
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<link rel="stylesheet" href="/stylesheets/style.css">
 </head>
@@ -46,7 +43,7 @@
 					<strong id="alert-text"></strong>
 				</div>
 
-				<div class="card text-white bg-primary" id="main-content">
+				<div class="card" id="main-content">
 					<div class="card-header text-center">
 						<h3 class="card-title font-weight-bold">{{title}}</h3>
 					</div>
@@ -54,9 +51,9 @@
 						<div class="row">
 
 							<div class="col-9">
-								<div class="card text-white bg-primary">
+								<div class="card">
 									<div class="card-header d-flex justify-content-between align-items-center">
-										<h5 class="card-title font-weight-bold text-uppercase chat-window-header"></h5>
+										<h5 class="card-title text-uppercase chat-window-header"></h5>
 
 										<div>
 											<span class="leave-btn px-2" id="inviteBtn" title="Invite"
