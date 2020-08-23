@@ -18,7 +18,7 @@ module.exports = {
 			display: 'JAVA'
 		}
 	],
-	SECRET: ' de5b49cb-9fe9-40c9-8167-ed18207af14d',
+	SECRET: 'de5b49cb-9fe9-40c9-8167-ed18207af14d',
 	SESSION_EXPIRESIN: 86400000,
 	LINK_EXPIRATION: 3600000
 }

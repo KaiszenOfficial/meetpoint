@@ -61,7 +61,9 @@ socket.on('user:welcome', (data) => {
 	serverMsgDiv.appendChild(textDiv);
 
 	chatWindow.appendChild(serverMsgDiv);
-})
+
+	chatWindow.scrollTop = chatWindow.scrollHeight;
+});
 
 socket.on('user:joined', (text) => {
 	var serverMsgDiv = document.createElement('div');
@@ -74,6 +76,8 @@ socket.on('user:joined', (text) => {
 	serverMsgDiv.appendChild(textDiv);
 
 	chatWindow.appendChild(serverMsgDiv);
+
+	chatWindow.scrollTop = chatWindow.scrollHeight;
 });
 
 socket.on('user:left', (text) => {
@@ -87,6 +91,8 @@ socket.on('user:left', (text) => {
 	serverMsgDiv.appendChild(textDiv);
 
 	chatWindow.appendChild(serverMsgDiv);
+
+	chatWindow.scrollTop = chatWindow.scrollHeight;
 });
 
 
@@ -135,6 +141,8 @@ socket.on('new:message', (data) => {
 	chatDiv.appendChild(card);
 	chatWindow.appendChild(chatDiv);
 
+	chatWindow.scrollTop = chatWindow.scrollHeight;
+
 });
 
 socket.on('sent:message', (data) => {
@@ -168,6 +176,8 @@ socket.on('sent:message', (data) => {
 
 	chatDiv.appendChild(card);
 	chatWindow.appendChild(chatDiv);
+
+	chatWindow.scrollTop = chatWindow.scrollHeight;
 });
 
 socket.on('check:host:true', () => {
