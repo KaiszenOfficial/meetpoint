@@ -52,7 +52,7 @@
 							<h6 class="">Visit my <a href="https://github.com/KaiszenOfficial/meetpoint"
 									class="text-info">GitHub repository</a></h6>
 
-							<h2 class="my-3">OR</h2>
+							<h3 class="my-3">OR</h3>
 
 							<h6 class="">Clone directly</h6>
 							<div class="input-group input-group-sm">
@@ -82,7 +82,8 @@
 
 				<div class="card">
 					<div class="card-header">
-						<h3 class="card-title font-weight-bold">{{title}}</h3>
+
+						<h3 class="card-title font-weight-bold"><img src="/images/chat.png" width="40"> {{title}}</h3>
 					</div>
 					<div class="card-body">
 						<form id="loginForm">
@@ -104,8 +105,8 @@
 							</div>
 
 							<div class="form-group">
-								<label for="" class="form-control-label">You can choose the room you want to join
-									into.</label>
+								<label for="" class="form-control-label">You can choose the meeting you want to
+									join</label>
 								<select name="room" id="room" class="custom-select">
 									{{#rooms}}
 									<option value="{{id}}">{{display}}</option>
@@ -116,14 +117,21 @@
 							<button type="submit" class="btn btn-primary text-uppercase mt-3 w-100">enter</button>
 						</form>
 
-						<h2 class="my-3">OR</h2>
+						<h3 class="my-3">OR</h3>
 
-						<button class="btn btn-primary text-uppercase" data-toggle="modal"
-							data-target="#createRoomModal">Create private
-							Meeting</button>
-						<button class="btn btn-primary text-uppercase" data-toggle="modal"
-							data-target="#joinRoomModal">Join private
-							Meeting</button>
+						<div class="row">
+							<div class="col-sm-12 col-md-6">
+								<button class="btn btn-primary text-uppercase w-100" data-toggle="modal"
+									data-target="#createRoomModal">Create private
+									Meeting</button>
+							</div>
+							<div class="col-sm-12 col-md-6">
+								<button class="btn btn-primary text-uppercase w-100" data-toggle="modal"
+									data-target="#joinRoomModal">Join private
+									Meeting</button>
+							</div>
+						</div>
+
 					</div>
 				</div>
 
@@ -136,15 +144,15 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Create Private Room</h5>
+					<h5 class="modal-title">Create Private Meeting</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<h6 class="font-weight-bold my-3">When you create a private room, you will be given a Meeting ID,
-						Password and an Invitation Link. You can share either the Room ID and Password or the Invitation
-						Link to whoever you would like to allow into the meeting.</h6>
+					<p class="my-3">When you create a private meeting, you will be given a Meeting ID,
+						Password and an Invitation Link. You can share either the ID and Password or the Invitation
+						Link and ask someone to join.</p>
 					<form id="createRoomForm">
 						<div class="form-group">
 							<div class="input-group">
@@ -197,7 +205,7 @@
 							</div>
 						</div>
 
-						<h2 class="text-center font-weight-bold my-3">Join meeting using</h2>
+						<h3 class="text-center my-3">Join meeting using</h3>
 
 						<div class="form-group">
 							<div class="input-group">
@@ -232,7 +240,7 @@
 							</div>
 						</div>
 
-						<h2 class="text-center font-weight-bold my-3">OR</h2>
+						<h3 class="text-center my-3">OR</h3>
 
 						<div class="form-group">
 							<div class="input-group">

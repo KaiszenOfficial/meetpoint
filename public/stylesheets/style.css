@@ -67,7 +67,7 @@ body {
 	height: 500px;
 	background-color: #f8f9fa;
 	padding: 20px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 }
