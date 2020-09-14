@@ -47,7 +47,7 @@
 							rooms, connecting to a room and emitting events to the connected room as well basic
 							authentication of the socket connection using JWT.</blockquote>
 
-						<div class="mt-5 text-center">
+						<!-- <div class="mt-5 text-center">
 
 							<h6 class="">Visit my <a href="https://github.com/KaiszenOfficial/meetpoint"
 									class="text-info">GitHub repository</a></h6>
@@ -70,7 +70,7 @@
 									</button>
 								</div>
 							</div>
-						</div>
+						</div> -->
 
 
 
